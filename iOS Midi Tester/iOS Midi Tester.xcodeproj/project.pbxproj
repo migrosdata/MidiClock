@@ -275,8 +275,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iMidiFinder/iOS Midi Tester-Prefix.pch";
-				INFOPLIST_FILE = "iMidiFinder/iOS Midi Tester-Info.plist";
+				GCC_PREFIX_HEADER = "iOS Midi Tester/iOS Midi Tester-Prefix.pch";
+				INFOPLIST_FILE = "iOS Midi Tester/iOS Midi Tester-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "iOS Midi Tester";
 				WRAPPER_EXTENSION = app;
@@ -287,8 +287,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iMidiFinder/iOS Midi Tester-Prefix.pch";
-				INFOPLIST_FILE = "iMidiFinder/iOS Midi Tester-Info.plist";
+				GCC_PREFIX_HEADER = "iOS Midi Tester/iOS Midi Tester-Prefix.pch";
+				INFOPLIST_FILE = "iOS Midi Tester/iOS Midi Tester-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "iOS Midi Tester";
 				WRAPPER_EXTENSION = app;

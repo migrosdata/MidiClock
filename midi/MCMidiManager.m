@@ -57,21 +57,24 @@
 	return NULL;
 }
 
+// http://stackoverflow.com/questions/10572747/why-doesnt-this-simple-coremidi-program-produce-midi-output
+
 - (void) sendTestPackets
 {
-	MIDIPacketList packetList;
+    char pktBuffer[1024];
+    MIDIPacketList* pktList = (MIDIPacketList*) pktBuffer;
+    MIDIPacket     *pkt;
+    Byte            noteOn[]  = {0x90, 0x3c, 0x40};
+    Byte            noteOff[] = {0x80, 0x3c, 0x40};
 	
-	packetList.numPackets = 1;
+	Float64 f = AudioGetHostClockFrequency();
+	UInt64 t = AudioGetCurrentHostTime();
 	
-	MIDIPacket *firstPacket = &packetList.packet[0];
+    pkt = MIDIPacketListInit( pktList );
+    pkt = MIDIPacketListAdd( pktList, 1024, pkt, t + 0 * f, 3, noteOn );
+    pkt = MIDIPacketListAdd( pktList, 1024, pkt, t + 1 * f, 3, noteOff );
 	
-	firstPacket->timeStamp = 0; // send immediately
-	firstPacket->length = 3;
-	firstPacket->data[0] = 0x90;
-	firstPacket->data[1] = 60;
-	firstPacket->data[2] = 64;
-
-	MIDISend( self.outPort, self.iac, &packetList );
+	MIDISend( self.outPort, self.iac, pktList );
 }
 
 NSString *getDisplayName( MIDIObjectRef object )

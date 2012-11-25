@@ -15,6 +15,7 @@
 		090B3E5A16628063003E0C4B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090B3E5816628063003E0C4B /* MainMenu.xib */; };
 		090B3E62166284F6003E0C4B /* MCMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 090B3E61166284F6003E0C4B /* MCMidiManager.m */; };
 		090B3E65166287FF003E0C4B /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090B3E64166287FF003E0C4B /* CoreMIDI.framework */; };
+		09BF38EA1662CC6A00D80B46 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BF38E91662CC6A00D80B46 /* CoreAudio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		090B3E60166284F6003E0C4B /* MCMidiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCMidiManager.h; path = ../midi/MCMidiManager.h; sourceTree = "<group>"; };
 		090B3E61166284F6003E0C4B /* MCMidiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCMidiManager.m; path = ../midi/MCMidiManager.m; sourceTree = "<group>"; };
 		090B3E64166287FF003E0C4B /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		09BF38E91662CC6A00D80B46 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09BF38EA1662CC6A00D80B46 /* CoreAudio.framework in Frameworks */,
 				090B3E65166287FF003E0C4B /* CoreMIDI.framework in Frameworks */,
 				090B3E4416628063003E0C4B /* Cocoa.framework in Frameworks */,
 			);
@@ -52,7 +55,7 @@
 		090B3E3416628063003E0C4B = {
 			isa = PBXGroup;
 			children = (
-				090B3E64166287FF003E0C4B /* CoreMIDI.framework */,
+				09BF38E91662CC6A00D80B46 /* CoreAudio.framework */,
 				090B3E63166284FC003E0C4B /* midi */,
 				090B3E4916628063003E0C4B /* Mac Midi Tester */,
 				090B3E4216628063003E0C4B /* Frameworks */,
@@ -72,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				090B3E4316628063003E0C4B /* Cocoa.framework */,
+				090B3E64166287FF003E0C4B /* CoreMIDI.framework */,
 				090B3E4516628063003E0C4B /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -315,6 +319,7 @@
 				090B3E5F16628063003E0C4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -10,4 +10,33 @@
 
 @implementation MCMidiManager
 
+NSString *getDisplayName( MIDIObjectRef object )
+{
+	// Returns the display name of a given MIDIObjectRef as an NSString
+	CFStringRef name = nil;
+	if (noErr != MIDIObjectGetStringProperty(object, kMIDIPropertyDisplayName, &name))
+		return nil;
+	return (NSString *)CFBridgingRelease(name);
+}
+
+- (NSArray *) listDestinations
+{
+	ItemCount destCount = MIDIGetNumberOfDestinations();
+	// NSMutableArray *destinations = [NSMutableArray arrayWithCapacity: destCount];
+	
+	for( ItemCount i = 0; i < destCount; ++i )
+	{
+		// Grab a reference to a destination endpoint
+		MIDIEndpointRef dest = MIDIGetDestination( i );
+		if( dest != (MIDIEndpointRef) NULL )
+		{
+			NSLog( @"%@",
+				  getDisplayName( dest )
+			);
+		}
+	}
+	
+	return NULL;
+}
+
 @end

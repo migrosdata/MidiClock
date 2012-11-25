@@ -13,6 +13,8 @@
 		090B3E5416628063003E0C4B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 090B3E5216628063003E0C4B /* Credits.rtf */; };
 		090B3E5716628063003E0C4B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 090B3E5616628063003E0C4B /* AppDelegate.m */; };
 		090B3E5A16628063003E0C4B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090B3E5816628063003E0C4B /* MainMenu.xib */; };
+		090B3E62166284F6003E0C4B /* MCMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 090B3E61166284F6003E0C4B /* MCMidiManager.m */; };
+		090B3E65166287FF003E0C4B /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090B3E64166287FF003E0C4B /* CoreMIDI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,9 @@
 		090B3E5516628063003E0C4B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		090B3E5616628063003E0C4B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		090B3E5916628063003E0C4B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		090B3E60166284F6003E0C4B /* MCMidiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCMidiManager.h; path = ../midi/MCMidiManager.h; sourceTree = "<group>"; };
+		090B3E61166284F6003E0C4B /* MCMidiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCMidiManager.m; path = ../midi/MCMidiManager.m; sourceTree = "<group>"; };
+		090B3E64166287FF003E0C4B /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090B3E65166287FF003E0C4B /* CoreMIDI.framework in Frameworks */,
 				090B3E4416628063003E0C4B /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,6 +52,8 @@
 		090B3E3416628063003E0C4B = {
 			isa = PBXGroup;
 			children = (
+				090B3E64166287FF003E0C4B /* CoreMIDI.framework */,
+				090B3E63166284FC003E0C4B /* midi */,
 				090B3E4916628063003E0C4B /* Mac Midi Tester */,
 				090B3E4216628063003E0C4B /* Frameworks */,
 				090B3E4016628063003E0C4B /* Products */,
@@ -100,6 +108,15 @@
 				090B3E5216628063003E0C4B /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		090B3E63166284FC003E0C4B /* midi */ = {
+			isa = PBXGroup;
+			children = (
+				090B3E60166284F6003E0C4B /* MCMidiManager.h */,
+				090B3E61166284F6003E0C4B /* MCMidiManager.m */,
+			);
+			name = midi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +185,7 @@
 			files = (
 				090B3E5016628063003E0C4B /* main.m in Sources */,
 				090B3E5716628063003E0C4B /* AppDelegate.m in Sources */,
+				090B3E62166284F6003E0C4B /* MCMidiManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

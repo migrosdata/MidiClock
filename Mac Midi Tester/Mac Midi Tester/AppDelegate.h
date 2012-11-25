@@ -8,8 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "MCMidiManager.h"
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+
+@property (retain) MCMidiManager *midi;
 
 @end

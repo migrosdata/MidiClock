@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreMIDI/CoreMIDI.h>
 
 @interface MCMidiManager : NSObject
+
+- (NSArray *) listDestinations;
 
 @end

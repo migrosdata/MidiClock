@@ -10,9 +10,13 @@
 
 @implementation AppDelegate
 
+@synthesize midi;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	// Insert code here to initialize your application
+	midi = [[MCMidiManager alloc] init];
+	
+	[midi listDestinations];
 }
 
 @end

@@ -13,11 +13,15 @@
 #define IN_PORT_NAME   CFSTR("Input Port")
 #define OUT_PORT_NAME  CFSTR("Output Port")
 
+#define IAC_NAME @"IAC Driver Bus 1"
+
 @interface MCMidiManager : NSObject
 
 @property (assign) MIDIClientRef client;
 @property (assign) MIDIPortRef inPort;
 @property (assign) MIDIPortRef outPort;
+
+@property (assign) MIDIEndpointRef iac;
 
 - (NSArray *) listDestinations;
 

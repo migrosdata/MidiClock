@@ -41,13 +41,29 @@
 		MIDIEndpointRef dest = MIDIGetDestination( i );
 		if( dest != (MIDIEndpointRef) NULL )
 		{
-			NSLog( @"%@",
-				  getDisplayName( dest )
-			);
+			NSString *name = getDisplayName( dest );
+			NSLog( @"%@", name );
+			
+			if( [name isEqualToString: IAC_NAME] )
+			{
+				self.iac = dest;
+			}
 		}
 	}
 	
+	if( self.iac != (MIDIEndpointRef) NULL )
+		NSLog(@"IAC found!");
+	
 	return NULL;
+}
+
+NSString *getDisplayName( MIDIObjectRef object )
+{
+	// Returns the display name of a given MIDIObjectRef as an NSString
+	CFStringRef name = nil;
+	if (noErr != MIDIObjectGetStringProperty(object, kMIDIPropertyDisplayName, &name))
+		return nil;
+	return (NSString *)CFBridgingRelease(name);
 }
 
 @end

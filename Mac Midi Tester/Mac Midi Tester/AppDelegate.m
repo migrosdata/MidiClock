@@ -19,4 +19,9 @@
 	[midi listDestinations];
 }
 
+- (IBAction) test: (id) sender
+{
+	[midi sendTestPackets];
+}
+
 @end

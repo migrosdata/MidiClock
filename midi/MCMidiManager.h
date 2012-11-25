@@ -24,6 +24,7 @@
 @property (assign) MIDIEndpointRef iac;
 
 - (NSArray *) listDestinations;
+- (void) sendTestPackets;
 
 NSString *getDisplayName( MIDIObjectRef object );
 

@@ -16,4 +16,6 @@
 
 @property (retain) MCMidiManager *midi;
 
+- (IBAction) test: (id) sender;
+
 @end

@@ -57,6 +57,23 @@
 	return NULL;
 }
 
+- (void) sendTestPackets
+{
+	MIDIPacketList packetList;
+	
+	packetList.numPackets = 1;
+	
+	MIDIPacket *firstPacket = &packetList.packet[0];
+	
+	firstPacket->timeStamp = 0; // send immediately
+	firstPacket->length = 3;
+	firstPacket->data[0] = 0x90;
+	firstPacket->data[1] = 60;
+	firstPacket->data[2] = 64;
+
+	MIDISend( self.outPort, self.iac, &packetList );
+}
+
 NSString *getDisplayName( MIDIObjectRef object )
 {
 	// Returns the display name of a given MIDIObjectRef as an NSString

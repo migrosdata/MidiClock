@@ -10,13 +10,24 @@
 
 @implementation MCMidiManager
 
-NSString *getDisplayName( MIDIObjectRef object )
+- (id) init
 {
-	// Returns the display name of a given MIDIObjectRef as an NSString
-	CFStringRef name = nil;
-	if (noErr != MIDIObjectGetStringProperty(object, kMIDIPropertyDisplayName, &name))
-		return nil;
-	return (NSString *)CFBridgingRelease(name);
+	if( self = [super init] )
+	{
+		MIDIClientRef client = (MIDIClientRef) NULL;
+		MIDIClientCreate( CLIENT_NAME, NULL, (__bridge void *)(self), &client );
+		self.client = client;
+		
+		MIDIPortRef inPort = (MIDIPortRef) NULL;
+		MIDIInputPortCreate( client, IN_PORT_NAME, NULL, (__bridge void *)(self), &inPort );
+		self.inPort = inPort;
+		
+		MIDIPortRef outPort = (MIDIPortRef) NULL;
+		MIDIOutputPortCreate( client, IN_PORT_NAME, &outPort );
+		self.outPort = outPort;
+	}
+	
+	return self;
 }
 
 - (NSArray *) listDestinations

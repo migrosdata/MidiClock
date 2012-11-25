@@ -9,8 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <CoreMIDI/CoreMIDI.h>
 
+#define CLIENT_NAME    CFSTR("MIDICock Client")
+#define IN_PORT_NAME   CFSTR("Input Port")
+#define OUT_PORT_NAME  CFSTR("Output Port")
+
 @interface MCMidiManager : NSObject
 
+@property (assign) MIDIClientRef client;
+@property (assign) MIDIPortRef inPort;
+@property (assign) MIDIPortRef outPort;
+
 - (NSArray *) listDestinations;
+
+NSString *getDisplayName( MIDIObjectRef object );
 
 @end

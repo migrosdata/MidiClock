@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MCMidiManager.h"
+
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextView *console;
+@property (retain) MCMidiManager *midi;
 
-- (void) appendToConsole: (NSString *) string;
-- (void) method1;
-- (void) method2;
-- (IBAction)toto:(id)sender;
-
-- (IBAction)rescan:(id)sender;
+- (IBAction) rescan: (id) sender;
+- (IBAction) play: (id) sender;
 
 @end

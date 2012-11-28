@@ -20,6 +20,7 @@
 		0968502316500DF200A37BFD /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0968502116500DF200A37BFD /* MainStoryboard_iPad.storyboard */; };
 		0968502616500DF200A37BFD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0968502516500DF200A37BFD /* ViewController.m */; };
 		0968502D16500E3000A37BFD /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0968502C16500E3000A37BFD /* CoreMIDI.framework */; };
+		097025B81662D948008D4A76 /* MCMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 097025B71662D948008D4A76 /* MCMidiManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		0968502416500DF200A37BFD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0968502516500DF200A37BFD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0968502C16500E3000A37BFD /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		097025B61662D948008D4A76 /* MCMidiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMidiManager.h; sourceTree = "<group>"; };
+		097025B71662D948008D4A76 /* MCMidiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMidiManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,7 @@
 				0968502116500DF200A37BFD /* MainStoryboard_iPad.storyboard */,
 				0968502416500DF200A37BFD /* ViewController.h */,
 				0968502516500DF200A37BFD /* ViewController.m */,
+				097025B51662D948008D4A76 /* midi */,
 				0968500D16500DF200A37BFD /* Supporting Files */,
 			);
 			path = "iOS Midi Tester";
@@ -112,6 +116,16 @@
 				0968501C16500DF200A37BFD /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		097025B51662D948008D4A76 /* midi */ = {
+			isa = PBXGroup;
+			children = (
+				097025B61662D948008D4A76 /* MCMidiManager.h */,
+				097025B71662D948008D4A76 /* MCMidiManager.m */,
+			);
+			name = midi;
+			path = ../../midi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +198,7 @@
 				0968501316500DF200A37BFD /* main.m in Sources */,
 				0968501716500DF200A37BFD /* AppDelegate.m in Sources */,
 				0968502616500DF200A37BFD /* ViewController.m in Sources */,
+				097025B81662D948008D4A76 /* MCMidiManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

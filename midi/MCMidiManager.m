@@ -14,15 +14,15 @@
 {
 	if( self = [super init] )
 	{
-		MIDIClientRef client = (MIDIClientRef) NULL;
+		MIDIClientRef client;
 		MIDIClientCreate( CLIENT_NAME, NULL, (__bridge void *)(self), &client );
 		self.client = client;
 		
-		MIDIPortRef inPort = (MIDIPortRef) NULL;
+		MIDIPortRef inPort;
 		MIDIInputPortCreate( client, IN_PORT_NAME, NULL, (__bridge void *)(self), &inPort );
 		self.inPort = inPort;
 		
-		MIDIPortRef outPort = (MIDIPortRef) NULL;
+		MIDIPortRef outPort;
 		MIDIOutputPortCreate( client, IN_PORT_NAME, &outPort );
 		self.outPort = outPort;
 	}
@@ -35,23 +35,22 @@
 	ItemCount destCount = MIDIGetNumberOfDestinations();
 	// NSMutableArray *destinations = [NSMutableArray arrayWithCapacity: destCount];
 	
-	for( ItemCount i = 0; i < destCount; ++i )
+	for( ItemCount i = 0; i < destCount; i++ )
 	{
 		// Grab a reference to a destination endpoint
 		MIDIEndpointRef dest = MIDIGetDestination( i );
-		if( dest != (MIDIEndpointRef) NULL )
+		if( dest )
 		{
 			NSString *name = getDisplayName( dest );
 			NSLog( @"%@", name );
 			
-			if( [name isEqualToString: IAC_NAME] )
-			{
+			//if( [name isEqualToString: IAC_NAME] )
+			if( ! self.iac )
 				self.iac = dest;
-			}
 		}
 	}
 	
-	if( self.iac != (MIDIEndpointRef) NULL )
+	if( self.iac )
 		NSLog(@"IAC found!");
 	
 	return NULL;
@@ -91,9 +90,10 @@ NSString *getDisplayName( MIDIObjectRef object )
 {
 	// Returns the display name of a given MIDIObjectRef as an NSString
 	CFStringRef name = nil;
-	if (noErr != MIDIObjectGetStringProperty(object, kMIDIPropertyDisplayName, &name))
+	if( MIDIObjectGetStringProperty(object, kMIDIPropertyDisplayName, &name ) != noErr )
 		return nil;
-	return (NSString *)CFBridgingRelease(name);
+
+	return (NSString *)CFBridgingRelease( name );
 }
 
 @end

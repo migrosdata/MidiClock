@@ -22,6 +22,13 @@
 {
 	[super viewDidLoad];
 
+	// Needed to be able to connect to the iPad from MIDI Network Setup in Ausio MIDI Setup
+	// We need to connect manually from the Mac side
+	MIDINetworkSession* session = [MIDINetworkSession defaultSession];
+	
+	session.enabled = YES;
+	session.connectionPolicy = MIDINetworkConnectionPolicy_Anyone;
+
 	// Do any additional setup after loading the view, typically from a nib.
 	midi = [[MCMidiManager alloc] init];
 	[midi listDestinations];

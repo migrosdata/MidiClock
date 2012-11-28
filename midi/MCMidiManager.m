@@ -58,18 +58,22 @@
 
 // http://stackoverflow.com/questions/10572747/why-doesnt-this-simple-coremidi-program-produce-midi-output
 // http://stackoverflow.com/questions/7668390/osx-core-midi-calling-midipacketlistadd-from-nstimer
+// http://stackoverflow.com/questions/675626/coreaudio-audiotimestamp-mhosttime-clock-frequency
 
 - (void) sendTestPackets
 {
 	char             pktBuffer[1024];
-	MIDIPacketList*  pktList = (MIDIPacketList*) pktBuffer;
+	MIDIPacketList   *pktList = (MIDIPacketList *) pktBuffer;
 	MIDIPacket       *pkt;
 	Byte             notes[]   = { 0x3c, 0x3e, 0x40, 0x41, 0x43, 0x45, 0x47, 0x48 };
 	Byte             noteOn[]  = { 0x90, 0x3c, 0x7f };
 	Byte             noteOff[] = { 0x80, 0x3c, 0x7f };
 	
-	Float64 f = AudioGetHostClockFrequency();
-	UInt64  t = AudioGetCurrentHostTime(), d = 0.3 * f;
+	mach_timebase_info_data_t tinfo;
+	mach_timebase_info( &tinfo );
+	double f = (double)tinfo.numer / tinfo.denom;
+
+	UInt64  d = 300000000 / f, t = mach_absolute_time() + d;
 	
 	pkt = MIDIPacketListInit( pktList );
 	for( int i = 0; i < 8; i++ )

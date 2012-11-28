@@ -15,7 +15,6 @@
 		090B3E5A16628063003E0C4B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090B3E5816628063003E0C4B /* MainMenu.xib */; };
 		090B3E62166284F6003E0C4B /* MCMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 090B3E61166284F6003E0C4B /* MCMidiManager.m */; };
 		090B3E65166287FF003E0C4B /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090B3E64166287FF003E0C4B /* CoreMIDI.framework */; };
-		09BF38EA1662CC6A00D80B46 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BF38E91662CC6A00D80B46 /* CoreAudio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +42,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09BF38EA1662CC6A00D80B46 /* CoreAudio.framework in Frameworks */,
 				090B3E65166287FF003E0C4B /* CoreMIDI.framework in Frameworks */,
 				090B3E4416628063003E0C4B /* Cocoa.framework in Frameworks */,
 			);

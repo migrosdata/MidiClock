@@ -26,6 +26,7 @@
 
 - (NSArray *) listDestinations;
 - (void) sendTestPackets;
+- (void) sendTestClockPackets;
 
 NSString *getDisplayName( MIDIObjectRef object );
 

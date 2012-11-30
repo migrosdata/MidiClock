@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreMIDI/CoreMIDI.h>
+#import <CoreAudio/HostTime.h>
 
 #define CLIENT_NAME    CFSTR("MIDICock Client")
 #define IN_PORT_NAME   CFSTR("Input Port")

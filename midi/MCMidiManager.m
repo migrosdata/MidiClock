@@ -57,21 +57,34 @@
 	return NULL;
 }
 
+// http://stackoverflow.com/questions/10572747/why-doesnt-this-simple-coremidi-program-produce-midi-output
+// http://stackoverflow.com/questions/7668390/osx-core-midi-calling-midipacketlistadd-from-nstimer
+
 - (void) sendTestPackets
 {
-	MIDIPacketList packetList;
+	char             pktBuffer[1024];
+	MIDIPacketList*  pktList = (MIDIPacketList*) pktBuffer;
+	MIDIPacket       *pkt;
+	Byte             notes[]   = { 0x3c, 0x3e, 0x40, 0x41, 0x43, 0x45, 0x47, 0x48 };
+	Byte             noteOn[]  = { 0x90, 0x3c, 0x7f };
+	Byte             noteOff[] = { 0x80, 0x3c, 0x7f };
 	
-	packetList.numPackets = 1;
+	Float64 f = AudioGetHostClockFrequency();
+	UInt64  t = AudioGetCurrentHostTime(), d = 0.3 * f;
 	
-	MIDIPacket *firstPacket = &packetList.packet[0];
-	
-	firstPacket->timeStamp = 0; // send immediately
-	firstPacket->length = 3;
-	firstPacket->data[0] = 0x90;
-	firstPacket->data[1] = 60;
-	firstPacket->data[2] = 64;
+	pkt = MIDIPacketListInit( pktList );
+	for( int i = 0; i < 8; i++ )
+	{
+		noteOn[1]  = notes[ i ];
+		noteOff[1] = notes[ i ];
 
-	MIDISend( self.outPort, self.iac, &packetList );
+		pkt = MIDIPacketListAdd( pktList, sizeof( pktBuffer ), pkt, t, 3, noteOn );
+		pkt = MIDIPacketListAdd( pktList, sizeof( pktBuffer ), pkt, t + d, 3, noteOff );
+
+		t += d;
+	}
+	
+	MIDISend( self.outPort, self.iac, pktList );
 }
 
 NSString *getDisplayName( MIDIObjectRef object )

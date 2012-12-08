@@ -10,6 +10,8 @@
 #import <CoreMIDI/CoreMIDI.h>
 #import <mach/mach_time.h>
 
+#import "MCTimeBase.h"
+
 #define CLIENT_NAME    CFSTR("MIDICock Client")
 #define IN_PORT_NAME   CFSTR("Input Port")
 #define OUT_PORT_NAME  CFSTR("Output Port")

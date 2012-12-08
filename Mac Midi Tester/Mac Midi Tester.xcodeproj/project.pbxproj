@@ -15,6 +15,7 @@
 		090B3E5A16628063003E0C4B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090B3E5816628063003E0C4B /* MainMenu.xib */; };
 		090B3E62166284F6003E0C4B /* MCMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 090B3E61166284F6003E0C4B /* MCMidiManager.m */; };
 		090B3E65166287FF003E0C4B /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090B3E64166287FF003E0C4B /* CoreMIDI.framework */; };
+		09D505431672B6CD0072182C /* MCTimeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D505421672B6CD0072182C /* MCTimeBase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		090B3E61166284F6003E0C4B /* MCMidiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCMidiManager.m; path = ../midi/MCMidiManager.m; sourceTree = "<group>"; };
 		090B3E64166287FF003E0C4B /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		09BF38E91662CC6A00D80B46 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		09D505411672B6CD0072182C /* MCTimeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCTimeBase.h; path = ../midi/MCTimeBase.h; sourceTree = "<group>"; };
+		09D505421672B6CD0072182C /* MCTimeBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCTimeBase.m; path = ../midi/MCTimeBase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 			children = (
 				090B3E60166284F6003E0C4B /* MCMidiManager.h */,
 				090B3E61166284F6003E0C4B /* MCMidiManager.m */,
+				09D505411672B6CD0072182C /* MCTimeBase.h */,
+				09D505421672B6CD0072182C /* MCTimeBase.m */,
 			);
 			name = midi;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				090B3E5016628063003E0C4B /* main.m in Sources */,
 				090B3E5716628063003E0C4B /* AppDelegate.m in Sources */,
 				090B3E62166284F6003E0C4B /* MCMidiManager.m in Sources */,
+				09D505431672B6CD0072182C /* MCTimeBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

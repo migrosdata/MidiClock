@@ -21,6 +21,7 @@
 		0968502616500DF200A37BFD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0968502516500DF200A37BFD /* ViewController.m */; };
 		0968502D16500E3000A37BFD /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0968502C16500E3000A37BFD /* CoreMIDI.framework */; };
 		097025B81662D948008D4A76 /* MCMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 097025B71662D948008D4A76 /* MCMidiManager.m */; };
+		09D5053F1672AB8F0072182C /* MCTimeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D5053E1672AB8F0072182C /* MCTimeBase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		0968502C16500E3000A37BFD /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		097025B61662D948008D4A76 /* MCMidiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMidiManager.h; sourceTree = "<group>"; };
 		097025B71662D948008D4A76 /* MCMidiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMidiManager.m; sourceTree = "<group>"; };
+		09D5053D1672AB8F0072182C /* MCTimeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCTimeBase.h; sourceTree = "<group>"; };
+		09D5053E1672AB8F0072182C /* MCTimeBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCTimeBase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 			children = (
 				097025B61662D948008D4A76 /* MCMidiManager.h */,
 				097025B71662D948008D4A76 /* MCMidiManager.m */,
+				09D5053D1672AB8F0072182C /* MCTimeBase.h */,
+				09D5053E1672AB8F0072182C /* MCTimeBase.m */,
 			);
 			name = midi;
 			path = ../../midi;
@@ -199,6 +204,7 @@
 				0968501716500DF200A37BFD /* AppDelegate.m in Sources */,
 				0968502616500DF200A37BFD /* ViewController.m in Sources */,
 				097025B81662D948008D4A76 /* MCMidiManager.m in Sources */,
+				09D5053F1672AB8F0072182C /* MCTimeBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

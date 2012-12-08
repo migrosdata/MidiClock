@@ -69,11 +69,10 @@
 	Byte             noteOn[]  = { 0x90, 0x3c, 0x7f };
 	Byte             noteOff[] = { 0x80, 0x3c, 0x7f };
 	
-	mach_timebase_info_data_t tinfo;
-	mach_timebase_info( &tinfo );
-	double f = (double)tinfo.numer / tinfo.denom;
+	MCTimeBase *base = [[MCTimeBase alloc] initWithTempo: 120];
 
-	UInt64  d = 300000000 / f, t = mach_absolute_time() + d;
+	UInt64 d = [base BeatTicks];
+	UInt64 t = mach_absolute_time() + d;
 	
 	pkt = MIDIPacketListInit( pktList );
 	for( int i = 0; i < 8; i++ )
@@ -102,24 +101,13 @@
 	char             pktBuffer[ 500 * clockPacketSize ];
 	MIDIPacketList   *pktList = (MIDIPacketList *) pktBuffer;
 	MIDIPacket       *pkt;
-	// Byte             notes[]   = { 0x3c, 0x3e, 0x40, 0x41, 0x43, 0x45, 0x47, 0x48 };
 	Byte             start[]  = { 0xfa };
 	Byte             stop[]   = { 0xfc };
 	Byte             clock[]  = { 0xf8 };
 	
-	mach_timebase_info_data_t tinfo;
-	mach_timebase_info( &tinfo );
-	double tick2ns = (double)tinfo.numer / tinfo.denom;
-	double ns2tick = (double)tinfo.denom / tinfo.numer;
+	MCTimeBase *base = [[MCTimeBase alloc] initWithTempo: 120];
 	
-	// d : tick
-	// dns : ns
-	// d = dns / f -> f = dns / d = ns/tick
-	// 48 pulse / second -> 1000/48 ms/pulse = 21 ms/pulse
-	
-	UInt64 d_ms = 21, ms2ns = 1000000;
-	UInt64 d_tick = d_ms * ms2ns * ns2tick;
-	
+	UInt64 d_tick = [base BeatTicks];
 	UInt64 t = mach_absolute_time() + d_tick;
 	
 	pkt = MIDIPacketListInit( pktList );

@@ -7,16 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <CoreMIDI/CoreMIDI.h>
 #import <mach/mach_time.h>
 
-#define MC_DEFAULT_TEMPO    120
-#define MC_CLOCKS_PER_BEAT   24
+#define MC_CLOCK_PACKET_SIZE        ( sizeof( MIDITimeStamp ) + sizeof( UInt16 ) + sizeof( Byte ) )
+#define MC_PACKET_LIST_HEADER_SIZE  sizeof( UInt32 )
+
+#define MC_DEFAULT_TEMPO      120
+#define MC_CLOCKS_PER_BEAT     24
 
 @interface MCTimeBase : NSObject
 {
 	mach_timebase_info_data_t ns_in_tick;
 	UInt64 ticks_in_clock;
+	UInt32 current_clock;
 }
 
 @property (nonatomic, assign, setter = setTempo:) UInt32 tempo;
@@ -24,8 +28,10 @@
 
 - (id) initWithTempo: (UInt32) new_tempo;
 
-- (void) start;
+- (UInt64) start;
+- (UInt64) nextClock;
 - (UInt64) ClockTicks;
 - (UInt64) BeatTicks;
+- (MIDIPacketList *) ClocksForDuration: (UInt32) ms;
 
 @end

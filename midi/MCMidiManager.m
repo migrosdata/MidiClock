@@ -97,30 +97,14 @@
 	// 48 midi clock pulses per second
 	// 10 seconds -> 480 pulses + start + stop
 	
-	UInt32           clockPacketSize = sizeof( UInt64 ) + sizeof( UInt16 ) + sizeof( Byte );
-	char             pktBuffer[ 500 * clockPacketSize ];
-	MIDIPacketList   *pktList = (MIDIPacketList *) pktBuffer;
-	MIDIPacket       *pkt;
-	Byte             start[]  = { 0xfa };
-	Byte             stop[]   = { 0xfc };
-	Byte             clock[]  = { 0xf8 };
-	
+	MIDIPacketList   *pktList;
+		
 	MCTimeBase *base = [[MCTimeBase alloc] initWithTempo: 120];
-	
-	UInt64 d_tick = [base BeatTicks];
-	UInt64 t = mach_absolute_time() + d_tick;
-	
-	pkt = MIDIPacketListInit( pktList );
-	pkt = MIDIPacketListAdd( pktList, sizeof( pktBuffer ), pkt, t, 1, start );
-	t += d_tick;
-	for( int i = 0; i < 480; i++ )
-	{
-		pkt = MIDIPacketListAdd( pktList, sizeof( pktBuffer ), pkt, t, 1, clock );
-		t += d_tick;
-	}
-	pkt = MIDIPacketListAdd( pktList, sizeof( pktBuffer ), pkt, t, 1, stop );
+	pktList = [base ClocksForDuration: 5000];
 	
 	MIDISend( self.outPort, self.iac, pktList );
+
+	free( pktList );
 }
 
 NSString *getDisplayName( MIDIObjectRef object )

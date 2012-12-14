@@ -71,23 +71,25 @@
 	return ( self.start_time != 0 );
 }
 
+// return time in ticks of current clock pulse
+- (UInt64) clockTime
+{
+	return _start_time + current_clock * ticks_in_clock;
+}
+
 // schedule next clock pulse and return its time
 - (UInt64) nextClock
 {
-	UInt64 t;
-	
 	current_clock += 1;
-	t = _start_time + current_clock * ticks_in_clock;
-	
-	return t;
+
+	return [self clockTime];
 }
 
 // calculate how long before it’s time to send the next clock pulse
 // assuming all the pulses were sent
 - (UInt64) ticksToNextClock
 {
-	UInt64 t = _start_time + current_clock * ticks_in_clock;
-	return t - mach_absolute_time();
+	return [self clockTime] - mach_absolute_time();
 }
 
 // return number of ticks in a clock period
@@ -106,8 +108,6 @@
 // http://stackoverflow.com/questions/8748582/pass-pointer-to-first-packet-between-methods-obj-c
 - (MIDIPacketList *) clocksForDuration: (UInt32) ms
 {
-	NSLog(@"clocksForDuration");
-	
 	// clock: 0xf8, start: 0xfa, stop: 0xfc
 	Byte      clock[]  = { 0xf8 };
 
@@ -118,7 +118,7 @@
 	if( ! [self isStarted] )
 		[self start];
 	
-	UInt64 t = _start_time + current_clock * ticks_in_clock;
+	UInt64 t = [self clockTime];
 	
 	// potential alignment problem on iOS
 	// http://lists.apple.com/archives/coreaudio-api/2011/Jun/msg00029.html

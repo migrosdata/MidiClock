@@ -22,7 +22,10 @@
 {
 	if( self = [super init] )
 	{
+		// calculate ticks per second based on mach timebase
+		mach_timebase_info_data_t ns_in_tick;
 		mach_timebase_info( &ns_in_tick );
+		ticks_per_second = ns_in_tick.denom * 1e9 / ns_in_tick.numer;
 		
 		self.tempo = new_tempo;
 	}
@@ -30,22 +33,16 @@
 	return self;
 }
 
-// tempo = 120 bpm
-// 2 quarter notes per second
-// 24 midi clock pulses per quarter note
-// 48 midi clock pulses per second
-
-// d : tick
-// dns : ns
-// d = dns / f -> f = dns / d = ns/tick
-// 48 pulse / second -> 1000/48 ms/pulse = 21 ms/pulse
-
 - (void) setTempo: (UInt32) new_tempo
 {
 	tempo = new_tempo;
+	ticks_in_clock = ticks_per_second / [self clocksPerSecondForTempo: new_tempo];
+}
 
-	// s/min ns/s b/ck min/b tk/ns = tk/ck
-	ticks_in_clock = 60 * 1e9 * ns_in_tick.denom / ( MC_CLOCKS_PER_BEAT * tempo * ns_in_tick.numer );
+- (double) clocksPerSecondForTempo: (UInt32) new_tempo
+{
+	// 24 midi clock pulses per quarter note
+	return new_tempo * MC_CLOCKS_PER_BEAT / 60;
 }
 
 - (UInt64) start
@@ -76,6 +73,7 @@
 	return ticks_in_clock * MC_CLOCKS_PER_BEAT;
 }
 
+// http://stackoverflow.com/questions/8748582/pass-pointer-to-first-packet-between-methods-obj-c
 - (MIDIPacketList *) ClocksForDuration: (UInt32) ms
 {
 	// clock: 0xf8, start: 0xfa, stop: 0xfc

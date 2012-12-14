@@ -18,8 +18,8 @@
 
 @interface MCTimeBase : NSObject
 {
-	mach_timebase_info_data_t ns_in_tick;
-	UInt64 ticks_in_clock;
+	double ticks_per_second;
+	double ticks_in_clock;
 	UInt32 current_clock;
 }
 
@@ -27,6 +27,7 @@
 @property (assign) UInt64 start_time;
 
 - (id) initWithTempo: (UInt32) new_tempo;
+- (double) clocksPerSecondForTempo: (UInt32) new_tempo;
 
 - (UInt64) start;
 - (UInt64) nextClock;

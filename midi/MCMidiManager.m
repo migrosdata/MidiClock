@@ -91,29 +91,29 @@
 
 - (void) sendTestClockPackets
 {
-	// tempo = 120 bpm
-	// 2 quarter notes per second
-	// 24 midi clock pulses per quarter note
-	// 48 midi clock pulses per second
-	// 10 seconds -> 480 pulses + start + stop
-	
+	// create and start a time base
 	MCTimeBase *base = [[MCTimeBase alloc] initWithTempo: 120];
 	[base start];
 
+	// start sending clock packets
 	[self performSelector: @selector(clocksForOneSecond:) withObject: base];
 }
 
+// send clock packets for one second and schedule the next batch
 - (void) clocksForOneSecond: (MCTimeBase *) base
 {
 	MIDIPacketList   *pktList;
-	
+
+	// send the packet list and free it
 	pktList = [base clocksForDuration: 1000];
-	
 	MIDISend( self.outPort, self.iac, pktList );
-	
 	free( pktList );
 
-	[self performSelector: @selector(clocksForOneSecond:) withObject: base afterDelay: 0.9e-9 * [base ticksToNextClock]];
+	// schedule the next 1-second batch
+	[self performSelector: @selector(clocksForOneSecond:)
+			   withObject: base
+			   afterDelay: 0.9 * [base ticksToNextClock] * 1e-9
+	];
 }
 
 NSString *getDisplayName( MIDIObjectRef object )

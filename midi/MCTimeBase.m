@@ -51,23 +51,27 @@
 	return new_tempo * MC_CLOCKS_PER_BEAT / 60;
 }
 
+// start the time base: record start time
 - (void) start
 {
 	self.start_time = mach_absolute_time();
 	current_clock = 0;
 }
 
+// stop the time base: reset start time
 - (void) stop
 {
 	self.start_time = 0;
 	current_clock = 0;
 }
 
+// check if time base is started
 - (BOOL) isStarted
 {
 	return ( self.start_time != 0 );
 }
 
+// schedule next clock pulse and return its time
 - (UInt64) nextClock
 {
 	UInt64 t;
@@ -78,22 +82,27 @@
 	return t;
 }
 
+// calculate how long before it’s time to send the next clock pulse
+// assuming all the pulses were sent
 - (UInt64) ticksToNextClock
 {
 	UInt64 t = _start_time + current_clock * ticks_in_clock;
 	return t - mach_absolute_time();
 }
 
+// return number of ticks in a clock period
 - (UInt64) clockTicks
 {
 	return ticks_in_clock;
 }
 
+// return number of ticks in a beat/quarter note
 - (UInt64) beatTicks
 {
 	return ticks_in_clock * MC_CLOCKS_PER_BEAT;
 }
 
+// generate a packet list of clock pulses for the given duration
 // http://stackoverflow.com/questions/8748582/pass-pointer-to-first-packet-between-methods-obj-c
 - (MIDIPacketList *) clocksForDuration: (UInt32) ms
 {

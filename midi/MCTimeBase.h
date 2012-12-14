@@ -33,6 +33,7 @@
 - (void) stop;
 - (BOOL) isStarted;
 - (UInt64) nextClock;
+- (UInt64) ticksToNextClock;
 - (UInt64) clockTicks;
 - (UInt64) beatTicks;
 - (MIDIPacketList *) clocksForDuration: (UInt32) ms;

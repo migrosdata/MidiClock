@@ -78,6 +78,12 @@
 	return t;
 }
 
+- (UInt64) ticksToNextClock
+{
+	UInt64 t = _start_time + current_clock * ticks_in_clock;
+	return t - mach_absolute_time();
+}
+
 - (UInt64) clockTicks
 {
 	return ticks_in_clock;
@@ -91,6 +97,8 @@
 // http://stackoverflow.com/questions/8748582/pass-pointer-to-first-packet-between-methods-obj-c
 - (MIDIPacketList *) clocksForDuration: (UInt32) ms
 {
+	NSLog(@"clocksForDuration");
+	
 	// clock: 0xf8, start: 0xfa, stop: 0xfc
 	Byte      clock[]  = { 0xf8 };
 

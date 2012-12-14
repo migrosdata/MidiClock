@@ -97,14 +97,23 @@
 	// 48 midi clock pulses per second
 	// 10 seconds -> 480 pulses + start + stop
 	
-	MIDIPacketList   *pktList;
-		
 	MCTimeBase *base = [[MCTimeBase alloc] initWithTempo: 120];
+	[base start];
+
+	[self performSelector: @selector(clocksForOneSecond:) withObject: base];
+}
+
+- (void) clocksForOneSecond: (MCTimeBase *) base
+{
+	MIDIPacketList   *pktList;
+	
 	pktList = [base clocksForDuration: 1000];
 	
 	MIDISend( self.outPort, self.iac, pktList );
-
+	
 	free( pktList );
+
+	[self performSelector: @selector(clocksForOneSecond:) withObject: base afterDelay: 0.9e-9 * [base ticksToNextClock]];
 }
 
 NSString *getDisplayName( MIDIObjectRef object )

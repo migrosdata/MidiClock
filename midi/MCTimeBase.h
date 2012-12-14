@@ -29,10 +29,12 @@
 - (id) initWithTempo: (UInt32) new_tempo;
 - (double) clocksPerSecondForTempo: (UInt32) new_tempo;
 
-- (UInt64) start;
+- (void) start;
+- (void) stop;
+- (BOOL) isStarted;
 - (UInt64) nextClock;
-- (UInt64) ClockTicks;
-- (UInt64) BeatTicks;
-- (MIDIPacketList *) ClocksForDuration: (UInt32) ms;
+- (UInt64) clockTicks;
+- (UInt64) beatTicks;
+- (MIDIPacketList *) clocksForDuration: (UInt32) ms;
 
 @end

@@ -27,30 +27,45 @@
 		mach_timebase_info( &ns_in_tick );
 		ticks_per_second = ns_in_tick.denom * 1e9 / ns_in_tick.numer;
 		
+		// ensure the timebase is stopped
+		[self stop];
+
+		// set the tempo
 		self.tempo = new_tempo;
 	}
 	
 	return self;
 }
 
+// set the tempo and calculate ticks per clock
 - (void) setTempo: (UInt32) new_tempo
 {
 	tempo = new_tempo;
 	ticks_in_clock = ticks_per_second / [self clocksPerSecondForTempo: new_tempo];
 }
 
+// calculate clocks per second for the given tempo
 - (double) clocksPerSecondForTempo: (UInt32) new_tempo
 {
 	// 24 midi clock pulses per quarter note
 	return new_tempo * MC_CLOCKS_PER_BEAT / 60;
 }
 
-- (UInt64) start
+- (void) start
 {
 	self.start_time = mach_absolute_time();
 	current_clock = 0;
-	
-	return self.start_time;
+}
+
+- (void) stop
+{
+	self.start_time = 0;
+	current_clock = 0;
+}
+
+- (BOOL) isStarted
+{
+	return ( self.start_time != 0 );
 }
 
 - (UInt64) nextClock
@@ -63,18 +78,18 @@
 	return t;
 }
 
-- (UInt64) ClockTicks
+- (UInt64) clockTicks
 {
 	return ticks_in_clock;
 }
 
-- (UInt64) BeatTicks
+- (UInt64) beatTicks
 {
 	return ticks_in_clock * MC_CLOCKS_PER_BEAT;
 }
 
 // http://stackoverflow.com/questions/8748582/pass-pointer-to-first-packet-between-methods-obj-c
-- (MIDIPacketList *) ClocksForDuration: (UInt32) ms
+- (MIDIPacketList *) clocksForDuration: (UInt32) ms
 {
 	// clock: 0xf8, start: 0xfa, stop: 0xfc
 	Byte      clock[]  = { 0xf8 };
@@ -83,7 +98,10 @@
 	UInt32    clockPacketCount = ms * tempo * MC_CLOCKS_PER_BEAT / ( 60 * 1000 );
 	UInt32    packetBufferSize = MC_PACKET_LIST_HEADER_SIZE + clockPacketCount * MC_CLOCK_PACKET_SIZE;
 	
-	UInt64 t = [self start];
+	if( ! [self isStarted] )
+		[self start];
+	
+	UInt64 t = _start_time + current_clock * ticks_in_clock;
 	
 	// potential alignment problem on iOS
 	// http://lists.apple.com/archives/coreaudio-api/2011/Jun/msg00029.html

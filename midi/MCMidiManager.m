@@ -71,7 +71,7 @@
 	
 	MCTimeBase *base = [[MCTimeBase alloc] initWithTempo: 120];
 
-	UInt64 d = [base BeatTicks];
+	UInt64 d = [base beatTicks];
 	UInt64 t = mach_absolute_time() + d;
 	
 	pkt = MIDIPacketListInit( pktList );
@@ -100,7 +100,7 @@
 	MIDIPacketList   *pktList;
 		
 	MCTimeBase *base = [[MCTimeBase alloc] initWithTempo: 120];
-	pktList = [base ClocksForDuration: 5000];
+	pktList = [base clocksForDuration: 1000];
 	
 	MIDISend( self.outPort, self.iac, pktList );
 

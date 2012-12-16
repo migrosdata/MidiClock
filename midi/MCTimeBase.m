@@ -98,6 +98,11 @@
 	return ticks_in_clock;
 }
 
+- (double) ticksPerSecond
+{
+	return ticks_per_second;
+}
+
 // return number of ticks in a beat/quarter note
 - (UInt64) beatTicks
 {

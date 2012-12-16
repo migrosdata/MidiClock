@@ -102,6 +102,8 @@
 // send clock packets for one second and schedule the next batch
 - (void) clocksForOneSecond: (MCTimeBase *) base
 {
+	NSLog(@"clocksForOneSecond");
+	
 	MIDIPacketList   *pktList;
 
 	// send the packet list and free it
@@ -112,7 +114,7 @@
 	// schedule the next 1-second batch
 	[self performSelector: @selector(clocksForOneSecond:)
 			   withObject: base
-			   afterDelay: 0.9 * [base ticksToNextClock] * 1e-9
+			   afterDelay: 0.9 * [base ticksToNextClock] / [base ticksPerSecond]
 	];
 }
 

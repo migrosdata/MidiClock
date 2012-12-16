@@ -43,6 +43,7 @@ typedef struct ClockMIDIPacketStruct ClockMIDIPacket;
 - (UInt64) nextClock;
 - (UInt64) ticksToNextClock;
 - (UInt64) clockTicks;
+- (double) ticksPerSecond;
 - (UInt64) beatTicks;
 - (MIDIPacketList *) clocksForDuration: (UInt32) ms;
 

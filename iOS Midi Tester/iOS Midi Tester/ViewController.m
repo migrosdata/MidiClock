@@ -46,7 +46,7 @@
 
 - (IBAction) play: (id) sender
 {
-	[midi sendTestPackets];
+	[midi sendTestClockPackets];
 }
 
 - (void)viewDidUnload

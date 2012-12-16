@@ -10,7 +10,15 @@
 #import <CoreMIDI/CoreMIDI.h>
 #import <mach/mach_time.h>
 
-#define MC_CLOCK_PACKET_SIZE        ( sizeof( MIDITimeStamp ) + sizeof( UInt16 ) + sizeof( Byte ) )
+// redefine a MIDIPacket struct for the clock, with just 1 byte of data, so we ca take its sizeof
+struct ClockMIDIPacketStruct {
+	MIDITimeStamp  timeStamp;
+	UInt16         length;
+	Byte           data[1];
+};
+typedef struct ClockMIDIPacketStruct ClockMIDIPacket;
+
+#define MC_CLOCK_PACKET_SIZE        sizeof( ClockMIDIPacket )
 #define MC_PACKET_LIST_HEADER_SIZE  sizeof( UInt32 )
 
 #define MC_DEFAULT_TEMPO      120

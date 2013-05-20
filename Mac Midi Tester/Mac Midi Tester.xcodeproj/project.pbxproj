@@ -15,6 +15,7 @@
 		090B3E5A16628063003E0C4B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090B3E5816628063003E0C4B /* MainMenu.xib */; };
 		090B3E62166284F6003E0C4B /* MCMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 090B3E61166284F6003E0C4B /* MCMidiManager.m */; };
 		090B3E65166287FF003E0C4B /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090B3E64166287FF003E0C4B /* CoreMIDI.framework */; };
+		094559E1174A9139006A0C41 /* MCMidiMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 094559E0174A9139006A0C41 /* MCMidiMessage.m */; };
 		09D505431672B6CD0072182C /* MCTimeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D505421672B6CD0072182C /* MCTimeBase.m */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,8 @@
 		090B3E60166284F6003E0C4B /* MCMidiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCMidiManager.h; path = ../midi/MCMidiManager.h; sourceTree = "<group>"; };
 		090B3E61166284F6003E0C4B /* MCMidiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCMidiManager.m; path = ../midi/MCMidiManager.m; sourceTree = "<group>"; };
 		090B3E64166287FF003E0C4B /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		094559DF174A9139006A0C41 /* MCMidiMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCMidiMessage.h; path = ../midi/MCMidiMessage.h; sourceTree = "<group>"; };
+		094559E0174A9139006A0C41 /* MCMidiMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCMidiMessage.m; path = ../midi/MCMidiMessage.m; sourceTree = "<group>"; };
 		09BF38E91662CC6A00D80B46 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		09D505411672B6CD0072182C /* MCTimeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCTimeBase.h; path = ../midi/MCTimeBase.h; sourceTree = "<group>"; };
 		09D505421672B6CD0072182C /* MCTimeBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCTimeBase.m; path = ../midi/MCTimeBase.m; sourceTree = "<group>"; };
@@ -120,6 +123,8 @@
 			children = (
 				090B3E60166284F6003E0C4B /* MCMidiManager.h */,
 				090B3E61166284F6003E0C4B /* MCMidiManager.m */,
+				094559DF174A9139006A0C41 /* MCMidiMessage.h */,
+				094559E0174A9139006A0C41 /* MCMidiMessage.m */,
 				09D505411672B6CD0072182C /* MCTimeBase.h */,
 				09D505421672B6CD0072182C /* MCTimeBase.m */,
 			);
@@ -194,6 +199,7 @@
 				090B3E5716628063003E0C4B /* AppDelegate.m in Sources */,
 				090B3E62166284F6003E0C4B /* MCMidiManager.m in Sources */,
 				09D505431672B6CD0072182C /* MCTimeBase.m in Sources */,
+				094559E1174A9139006A0C41 /* MCMidiMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

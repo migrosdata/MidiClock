@@ -7,6 +7,7 @@
 //
 
 #import "MCMidiManager.h"
+#import "MCMidiMessage.h"
 
 @implementation MCMidiManager
 
@@ -86,9 +87,69 @@
 		t += d;
 	}
 	
-	MIDISend( self.outPort, self.iac, pktList );
+	// MIDISend( self.outPort, self.iac, pktList );
+	
+	[self parseMIDIPacketList: pktList];
 }
 
+- (void) parseMIDIPacketList: (MIDIPacketList *) list
+{
+	MIDIPacket *packet = &list->packet[0];
+
+	for( int i = 0; i < list->numPackets; i++ )
+	{
+		[self parseMIDIPacket: packet];
+		packet = MIDIPacketNext( packet );
+	}
+}
+
+- (kMIDIType) getTypeFromStatusByte: (Byte) inStatus
+{
+	if( ( inStatus < 0x80 )
+		|| ( inStatus == 0xF4 )
+		|| ( inStatus == 0xF5 )
+		|| ( inStatus == 0xF9 )
+		|| ( inStatus == 0xFD ) ) return MS_InvalidType; // data bytes and undefined.
+	if( inStatus < 0xF0 ) return (kMIDIType)( inStatus & 0xF0 );   // Channel message, remove channel nibble.
+	else return (kMIDIType)inStatus;
+}
+
+- (void) parseMIDIPacket: (MIDIPacket *) packet
+{
+	NSLog( @"Packet (%d)", packet->length );
+	
+	NSMutableArray *messages = [NSMutableArray array];
+	MCMidiMessage *message;
+	
+	BOOL messageStarted = NO;
+	BOOL inRunning = NO;
+	Byte runningStatus = NULL;
+	for( UInt16 i = 0; i < packet->length; i++ )
+	{
+		Byte byte = packet->data[i];
+		kMIDIType status = [self getTypeFromStatusByte: byte];
+		
+		if( ! messageStarted )
+		{
+			if( status == MS_InvalidType )
+			{
+				NSLog( @"Invalid status: %d", byte );
+				return;
+			}
+
+			// now we have a valid status byte
+			messageStarted = YES;
+			runningStatus = status;
+			
+			message = [[MCMidiMessage alloc] init];
+			[message setTimeStamp: packet->timeStamp];
+			[message setStatus: status];
+			
+			[messages addObject: message];
+		}
+		
+	}
+}
 - (void) sendTestClockPackets
 {
 	// create and start a time base

@@ -21,7 +21,8 @@
 
 - (IBAction) test: (id) sender
 {
-	[midi sendTestClockPackets];
+	//[midi sendTestClockPackets];
+	[midi sendTestPackets];
 }
 
 @end

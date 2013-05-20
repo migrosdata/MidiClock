@@ -152,6 +152,20 @@
 }
 - (void) sendTestClockPackets
 {
+    MIDIPacket       pkt;
+    MIDIPacketList   l;
+    // clock: 0xf8, start: 0xfa, stop: 0xfc
+    
+    // Send a start msg
+    pkt.timeStamp = 0;
+    pkt.length = 1;
+    pkt.data[0] = 0xfa;
+    
+    l.numPackets = 1;
+    l.packet[0] = pkt;
+
+    MIDISend( self.outPort, self.iac, &l );
+
 	// create and start a time base
 	MCTimeBase *base = [[MCTimeBase alloc] initWithTempo: 120];
 	[base start];
